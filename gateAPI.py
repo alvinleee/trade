@@ -60,6 +60,12 @@ class GateIO:
         URL = "/api2/1/tradeHistory"
         return httpGet(self.__url, URL, param)
 
+    # 获取交易K线数据
+    def getKlineInfo(self, pairs, group_sec, range_hour):
+        URL = "/api2/1/candlestick2/" + pairs
+        param = {"group_sec": group_sec, "range_hour": range_hour}
+        return httpGetByRequests(self.__url, URL, param)
+
     ## Methods that make use of the users keys
 
     #获取帐号资金余额

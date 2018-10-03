@@ -6,6 +6,7 @@ import urllib
 import json
 import hashlib
 import hmac
+import requests
 
 def getSign(params, secretKey):
     bSecretKey = bytes(secretKey, encoding='utf8')
@@ -25,6 +26,15 @@ def httpGet(url, resource, params=''):
     response = conn.getresponse()
     data = response.read().decode('utf-8')
     return json.loads(data)
+
+def httpGetByRequests(url, resource, parames=None):
+    conn = "https://" + url + resource
+    if parames:
+        pass
+    else:
+        parames = {}
+    res = requests.get(url=conn, params=parames)
+    return json.loads(res.text)
 
 def httpPost(url, resource, params, apiKey, secretKey):
      headers = {
